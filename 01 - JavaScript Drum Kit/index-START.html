@@ -58,8 +58,48 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+function play_sound(e) {
+    // event listener of "keydown" means listenin for specific key-presses
 
-</script>
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+      // here we're setting up a queryto search this doc for the keyCode logged in the keydown event
+
+    const key = document.querySelector(`.key[data-key ="${e.keyCode}"]`);
+    // this gives us access to the entire divs that these keys exist within
+
+      if (!audio) return;
+      // this accounts for when there is an unassigned key being pressed
+
+      audio.currentTime = 0;
+      // this resets the playback to zero, so that if you mash th button it'll restart and play from the beginnning each time
+
+      audio.play();
+      // after selecting the audio element from above with the query selector, we can now just invoke .play(); to run it
+
+      key.classList.add('playing');
+      // other things we can do with this "classList":
+      // key.classList.remove('playing');
+      // key.classList.toggle('playing');
+      // in Jquery this would look like: key.addClass('playing');
+    }
+
+    function removeTransition(e) {
+      if (e.propertyName !== "transform") return;
+        this.classList.remove('playing');
+      };
+      // this function looks for a transform property thats being triggered by an event and when it ends, removes the class "playing" from that element
+
+
+    const keys = document.querySelectorAll('.key');
+    // gathers all the elements that have a "key" class into a node list(not quite an array)
+
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+    // this says on each key element, to add an event listener for when it shows the propertyname "transform" to know to remove the class "playing" that we added earlier in the play_sound function
+
+  window.addEventListener('keydown', play_sound);
+
+
+  </script>
 
 
 </body>
