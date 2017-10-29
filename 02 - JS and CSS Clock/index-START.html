@@ -62,12 +62,62 @@
       background:black;
       position: absolute;
       top:50%;
+      transform-origin: 100%;
+      /*^^^default is "50%, 100%"" puts the pivot poit on the far right hand side*/
+      transform: rotate(90deg);
+      transition: all .07s;
+      transition-timing-function: ease-in-out;
+    }
+
+    .min-hand {
+      background: green;
+      border-radius: 10px;
+    }
+
+    .hour-hand {
+      left: 30px;
+      width: 120px;
+      height: 12px;
+      border-radius: 10px;
+    }
+
+    .second-hand {
+      height: 2px;
+      background: red;
+      border-radius: 10px;
     }
 
   </style>
 
   <script>
+  function setDate() {
+    // console.log("sup shawty");
+    const now = new Date();
 
+    const seconds = now.getSeconds();
+    const secondDegrees = ((seconds / 60) * 360) + 90;
+    // need that + 90 to offset the "rotate(90deg) from earlier in the css"
+    secondHand.style.transform = `rotate(${secondDegrees}deg)`;
+
+
+    const minutes = now.getMinutes();
+    const minDegrees = (( minutes / 60 ) * 360 ) + 90;
+    // need that + 90 to offset the "rotate(90deg) from earlier in the css"
+    minHand.style.transform = `rotate(${minDegrees}deg)`;
+
+    const hours = now.getHours();
+    const hourDegrees = (( hours / 12 ) * 360 ) + 90;
+    // need that + 90 to offset the "rotate(90deg) from earlier in the css"
+    hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+    console.log(hours);
+  };
+
+const secondHand = document.querySelector('.second-hand');
+const minHand = document.querySelector('.min-hand');
+const hourHand = document.querySelector('.hour-hand');
+  setInterval(setDate, 1000);
+
+  setDate();
 
   </script>
 </body>
