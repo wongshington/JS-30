@@ -5,22 +5,40 @@
   <title>Scoped CSS Variables and JS</title>
 </head>
 <body>
-  <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
+  <h2>Update CSS Variables with <span class='highlight'>JS</span></h2>
 
   <div class="controls">
     <label for="spacing">Spacing:</label>
-    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+    <input id="spacing" type="range" name="spacing" min="10" max="200" value="20" data-sizing="px">
+    <!-- this data attribute "data-sizing" is something we can add to whatebver as long as we just start it with data-.... -->
+    <!-- here we just use it to add the dataType suffix to whatever input we're selecting for,so that it gets carried around with it on the page -->
 
     <label for="blur">Blur:</label>
-    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+    <input id="blur" type="range" name="blur" min="0" max="25" value="2" data-sizing="px">
 
     <label for="base">Base Color</label>
-    <input id="base" type="color" name="base" value="#ffc600">
+    <input id="base" type="color" name="base" value="#42f44e">
   </div>
 
-  <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+  <img src="https://images.unsplash.com/2/04.jpg?auto=format&fit=crop&w=1350&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D">
 
   <style>
+  :root {
+    --base: #42f44e;
+    --spacing: 20px;
+    --blur: 2px;
+  }
+
+  img {
+    padding: var(--spacing);
+    background: var(--base);
+    filter: blur(var(--blur));
+    height: 400px;
+  }
+
+  .highlight {
+    color: var(--base);
+  }
 
     /*
       misc styles, nothing to do with CSS variables
@@ -45,6 +63,24 @@
   </style>
 
   <script>
+
+  const inputs = document.querySelectorAll('.controls input');
+  // technically this function doesnt result in an array, but sometimes you might need to convert this "node list" into an array
+
+  function handleUpdate() {
+        // need to know the "suffix" for the code we're looking for
+        // console.log(this.dataset); << because of our html data attribute "data-sizing", inside of our dev tools we'd see a DOMString with all the data params, in this case: {sizing: "px"}
+    const suffix = this.dataset.sizing || '';
+        // so that either it has the sizing or no data suffix type(which we dont have for the hexCode input)
+    document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+        // the "value" is coming from the actual inputs themselves
+  }
+
+  inputs.forEach(input => input.addEventListener('change', handleUpdate));
+  inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+  // handleUpdate is a semantic name, but this function could be called "shmandleShmupdate" and still work
+
+
   </script>
 
 </body>
