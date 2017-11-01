@@ -31,28 +31,116 @@
 
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    const people15 = inventors.filter( inventor => {
+      if(inventor.year >= 1500 && inventor.year < 1600) {
+        return true;
+      }
+    });
+
+    console.log(people15);
+    console.table(people15);
+
+    // the above is the same as the below
+    //
+    // const arr = [];
+    // const people15 = inventors.forEach(function (inventor) {
+    //   if(inventor.year >= 1500 && inventor.year < 1600) {
+    //     arr.push(inventor);
+    //   }
+    // });
+
+
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
 
+      const firstLast = inventors.map(inventor => {
+      return `${inventor.first} ${inventor.last}`;
+      });
+
+      console.log(firstLast);
+
+
+
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+
+    // const byOldest = inventors.sort((first, second) => {
+    //   if (first.year > second.year) {
+    //     return 1;
+    //   } else {
+    //     return -1
+    //   }
+    // })
+
+    // same as above code:
+    const byOldest = inventors.sort( (first, second) => first.year > second.year ? 1 : -1);
+    // this is pretty legit, pretty much just bubble sort
+    // also implicitly returns because a single line fat arrow function
+
+    console.table(byOldest);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
 
+    const totalYears = inventors.reduce((acc, inventor) => {
+      // console.log(acc);
+      return acc + (inventor.passed - inventor.year);
+    },0);
+    // need to include that last "0" because when the fuction begins the acc is nil
+
+    console.log(totalYears);
+
+
     // 5. Sort the inventors by years lived
+
+    const byYears = inventors.sort(( first, second) => {
+      const a = first.passed - first.year;
+      const b = second.passed - second.year;
+      return a < b ? 1 : -1;
+    });
+
+    console.table(byYears);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+
+    //  const category = document.querySelector('.mw-category');
+             //  we can call querySelector on any thing pointing to a DOM element
+    //  const links = Array.from(category.querySelectorAll('.a'));
+            //  we need to do "Array.from" here because querySelector returns a node list which is almost like an array, but we cant use .map on it among some other things
+
+            //  const links = [...(category.querySelectorAll('.a')];
+            // this above line is the same as using the Array.from syntax from earlier, but instead utilizes the es6 spread operator
+
+    // const de = links
+    //                 .map(link => link.textContent);
+    //                 .filter(name => name.includes('de'));
+            // this returns an array of all the textContent from the links
 
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
 
+    const alpha = people.sort( (last, next) => {
+      const [last1, first1] = last.split(', ');
+      const [last2, first2] = next.split(', ');
+      return last1 > last2 ? 1 : -1;
+    });
+    console.table(alpha);
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+    const transportation = data.reduce( (obj, item) => {
+      if(!obj[item]) {
+      obj[item] = 0;
+      }
+      obj[item]++;
+      return obj;
+    },{});
+
+console.log(transportation);
 
   </script>
 </body>
