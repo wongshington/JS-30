@@ -24,6 +24,8 @@
     .panels {
       min-height:100vh;
       overflow: hidden;
+      display: flex;
+      /*this display flex will put these boxes side by side*/
     }
 
     .panel {
@@ -41,6 +43,14 @@
       font-size: 20px;
       background-size:cover;
       background-position:center;
+      flex: 1;
+      /*each of the panels are going to envenly distribute the space amongst them*/
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      /*this then spreads the children elements(text items) side by side of each other*/
+      flex-direction: column;
+      /*we use this to stack the text elements*/
     }
 
 
@@ -51,10 +61,29 @@
     .panel5 { background-image:url(https://source.unsplash.com/3MNzGlQM7qs/1500x1500); }
 
     .panel > * {
+      /* this selector denotes all(*) the children of the .panel*/
       margin:0;
       width: 100%;
       transition:transform 0.5s;
+      border: 2px solid red;
+      flex: 1 0 auto;
+      /*this spaces them evenly and centers them within their parent*/
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
+
+    /*this is some code we're adding*/
+    .panel > *:first-child {
+      background: blue;
+      transform: translateY(-100%);
+    }
+
+    .panel > *:last-child {
+      background: blue;
+      transform: translateY(100%);
+    }
+
 
     .panel p {
       text-transform: uppercase;

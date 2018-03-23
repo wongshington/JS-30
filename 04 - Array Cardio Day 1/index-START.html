@@ -132,8 +132,11 @@
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
 
+    // this exercise is basically just to makea counter hash
+
     const transportation = data.reduce( (obj, item) => {
       if(!obj[item]) {
+        // this line above just checks to see if that item has been entered in the POJO yet, and if not just sets the vaalue to 0 and then outside of the if block it'll increment appropriately
       obj[item] = 0;
       }
       obj[item]++;
