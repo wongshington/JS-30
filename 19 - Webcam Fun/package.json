@@ -5,6 +5,7 @@
   "main": "scripts.js",
   "scripts": {
     "start": "browser-sync start --server --files \"*.css, *.html, *.js\""
+    /* this line above starts a simple server using browser sync */
   },
   "author": "",
   "license": "ISC",
