@@ -68,20 +68,36 @@ html {
       transform: rotate(90deg);
       transition: all 0.05s;
 
-      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1)
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
     }
     </style>
 
     <script>
+        const secondHand = document.querySelector(".second-hand");
+        const minHand = document.querySelector(".min-hand");
+        const hourHand = document.querySelector(".hour-hand");
+
         function setDate(){
             // console.log("setting date");
             const now = new Date();
             const seconds = now.getSeconds();
-            const secondsDegrees = ((seconds/60) * 360);
+            const secondDegrees = ((seconds / 60) * 360) + 90;
+            secondHand.style.transform = `rotate(${secondDegrees}deg)`;
+            // console.log(seconds);
 
-            console.log(secondsDegrees);
+            const minutes = now.getMinutes();
+            const minDegrees = ((minutes / 60) * 360) + 90;
+            minHand.style.transform = `rotate(${minDegrees}deg)`;
+            // console.log("minutes /60", minutes/60);
+            // console.log("minDegrees", minDegrees);s
+            
+            const hours = now.getHours();
+            const hrDegrees = ((hours / 60) * 360) + 90;
+            hourHand.style.transform = `rotate(${hrDegrees}deg)`;
             
         };
+        // the hands still spin all the way over when they reach the top, will need to conditionally remove transition for that brief second
+        // make hands different sizes
         
 
         setInterval( setDate, 1000);
