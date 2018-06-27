@@ -13,10 +13,10 @@
 
     <div class="controls">
         <label for="spacing">Spacing:</label>
-        <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+        <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px" data-owner="yo-mama">
 
         <label for="blur">Blur:</label>
-        <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+        <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px" data-owner="Jesse">
 
         <label for="base">Base Color</label>
         <input id="base" type="color" name="base" value="#ff0000">
@@ -27,9 +27,11 @@
     <style>
         :root {
             --base: #ff0000;
-            --spacing: 10px;
-            --blur: 10px;
+            --spacing: 50px;
+            --blur: 1px;
         }
+        /* css variables need to be declared on an element */
+        /* how do these css variables work? */
 
         img {
             /* need to declare css variables with -- */
@@ -67,12 +69,15 @@
     <script>
         const inputs = document.querySelectorAll(".controls input")
         // console.dir(inputs);
-        inputs.forEach((node) => node.addEventListener("mousemove", handleUpdate
-        ))
-        inputs.forEach((node) => node.addEventListener("change", handleUpdate
-        ))
+        inputs.forEach((node) => node.addEventListener("mousemove", handleUpdate))
+
+        inputs.forEach((node) => node.addEventListener("change", handleUpdate ))
+
         function handleUpdate() {
+            console.dir(this)
             suffix = this.dataset.sizing || "";
+            // this.dataset will point to the instance(HTMLelement) we are calling this function on
+
             document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix)
             // console.log(`${this.value}${suffix}`);
             
