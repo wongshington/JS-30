@@ -59,28 +59,80 @@
 
         // Array.prototype.sort()
         // 3. Sort the inventors by birthdate, oldest to youngest
+        //         function test() {
+        //         let res = inventors.sort((el, el2) => {
+        //             return el.year - el2.year 
+        //         })
+        //         console.log(res);
+                
+        //     }
+        //     // "azrd" < "ba"  ---> true
+        //     // "azrd" < "aba" ---> false
 
+        // test()
 
         // Array.prototype.reduce()~^
         // 4. How many years did all the inventors live?
-
+            // function test(el, el2) {
+            //     console.log("1111!", el);
+            //     console.log(el2);
+                
+            // }
+            // console.log(inventors.reduce( (age, next, ) => {
+            //     console.log(age)
+                
+            //     let num = next.passed - next.year;
+            //     return age += num;
+            // }, 0))
+            // we can pass an optional initialValue here after the callback
 
         // 5. Sort the inventors by years lived
-
+            // console.log(inventors.sort((a, b)=> {
+            //     let aAge = a.passed - a.year
+            //     let bAge = b.passed - b.year
+            //     return aAge - bAge
+            // })
+            // )
 
         // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
         // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-
+            // let aArray = Array.from(document.querySelectorAll(".mw-category-group li a"));
+            // let results = [];
+            // aArray.filter((el)=> {
+            //     // let titleArr = el.title.split(" ");
+            //     // console.log(el);
+                
+            //     if ( el.title.indexOf(" de ") >= 0) {
+            //         results.push(el.title)
+            //     }
+            //     // console.log(results);
+                
+            // })
+            // console.log(results);
 
         // 7. sort Exercise
         // Sort the people alphabetically by last name
+                // console.log(people.sort((a, b) => {
+                //     if (a.split(", ")[0] < b.split(", ")[0]) {
+                //         return -1
+                //     }
+                //     return 1
+                // }))
+                // sort expects a numerical value to be returned
 
         // 8. Reduce Exercise
         // Sum up the instances of each of these
         const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
 
         // this exercise is basically just to make a counter hash
-
+               console.log(data.reduce((acc, curr) => {
+                    if (acc[curr]) {
+                        acc[curr] ++;
+                    } else {
+                        acc[curr] = 1;
+                    }
+                    return acc
+                }, {}))
 
     </script>
 </body>
