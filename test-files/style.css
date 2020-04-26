@@ -1,0 +1,95 @@
+body {
+  height: 100vh;
+}
+
+/* top level */
+.container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 65px 50px 600px;
+  grid-auto-rows: 300px;
+  grid-template-areas: 
+    "header   header   header"
+    "header2  header2  header2"
+    "featured featured featured"
+    "rows     rows     rows"
+    "footer   footer   footer";
+}
+
+.item {
+  border: 1px solid black;
+}
+
+.item1{
+  grid-area: header;
+}
+
+.item2{
+  grid-area: header2;
+}
+
+.item3{
+  grid-area: featured;
+}
+
+.item4{
+  grid-area: rows;
+}
+
+.item5{
+  grid-area: footer;
+}
+
+
+/* featured section */
+.item3{
+  margin-right: 10%;
+  margin-left: 10%;
+  display: grid;
+  grid-column-gap: 50px;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas: 
+    "left right"
+    "left right"
+    "left right"
+    "left right";
+}
+
+.featured {
+  grid-area: left;
+  min-width: 300px;
+  min-height: 300px;
+  border: 12px solid green;
+  display: grid;
+}
+
+
+.feature-img {
+  background-image: url("https://ksr-ugc.imgix.net/assets/023/404/039/f884466fc91f2497db3b752a6d4898b6_original.jpg?ixlib=rb-1.1.0&crop=faces&w=560&h=315&fit=crop&v=1543364755&auto=format&frame=1&q=92&s=93eaaeba4cdcd3fed3d49abd0302ce88");
+  background-size: cover;
+  background-position: center;
+}
+
+.feature-text {
+  /* grid-area: left-text; */
+  background: red;
+}
+
+.showcase-items {
+  grid-area: right;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+/* .showcase-items::after {
+  content: "Hello";
+  /* grid-area: right */
+} */
+
+.showcase-item2 {
+  /* grid-area: right */
+}
+.showcase-item3 {
+  /* grid-area: right */
+}
+
